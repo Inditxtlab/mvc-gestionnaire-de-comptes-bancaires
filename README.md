@@ -6,7 +6,7 @@ Creation de dossiers et fichiers du projet
 
 /mvc-banque
 |- /controllers
-|  |- AuthController.php
+|  |-AdminController.php
 |  |-ClientController.php
 |  |-CompteController.php
 |  |-ContractController.php
