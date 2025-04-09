@@ -8,23 +8,31 @@ class ClientRepository{
     {
         $this->connection = new DatabaseConnection();
     }
-    public function getClients():array{
-        $statement=$this->connection->getConnection()->prepare('SELECT * FROM client'); 
-        $statement->execute();  
-        $clients=[]; 
-        foreach ($statement as $row) {
-            $client= new Client(); 
-            $client->setId($row['id']); 
-            $client->setNom($row['nom']); 
-            $client->setPrenom($row['prenom']); 
-            $client->setEmail($row['email']); 
-            $client->setTelephone($row['telephone']); 
-            $client->setAdresse($row['adresse']); 
-            $client->setCreatedAt(date_create_from_format('Y-m-d', $row['create_time']));
-            $clients[]=$client; 
+    public function getClients(): array {
+        try {
+            $statement = $this->connection->getConnection()->prepare('SELECT * FROM client'); 
+            $statement->execute();
+            $rows = $statement->fetchAll(); 
+            
+            $clients = [];
+            foreach ($rows as $row) {
+                $client = new Client(); 
+                $client->setId($row['id']); 
+                $client->setNom($row['nom']); 
+                $client->setPrenom($row['prenom']); 
+                $client->setEmail($row['email']); 
+                $client->setTelephone($row['telephone']); 
+                $client->setAdresse($row['adresse']); 
+                $clients[] = $client; 
+            }
+            return $clients; 
+            
+        } catch (PDOException $e) {
+            error_log("Error fetching clients: " . $e->getMessage());
+            return [];
         }
-        return $clients; 
-    }  
+    }
+    
 
     public function getClient(int $id): ?Client{
     $statement=
@@ -34,14 +42,14 @@ class ClientRepository{
     if(!$result){
         return null; 
     }
+ 
     $client=new Client(); 
     $client->setId($result['id']); 
     $client->setNom($result['nom']); 
     $client->setPrenom($result['prenom']); 
     $client->setEmail($result['email']); 
     $client->setTelephone($result['telephone']); 
-    $client->setAdresse($result['adresse']); 
-    $client->setCreatedAt(date_create_from_format('Y-m-d', $result['create_time']));
+    $client->setAdresse($result['adresse']);
 
     return $client; 
     }
@@ -73,10 +81,18 @@ class ClientRepository{
             'adresse'=>$client->getAdresse()
         ]);
     }
-        public function detele (int $id):bool{
+
+        public function delete (int $id):bool{
             $statement=$this->connection->getConnection()
             ->prepare('DELETE FROM client WHERE id= :id'); 
             $statement->bindParam(':id',$id);
             return $statement->execute();
+        }
+
+        public function countAll(): int
+        {
+            $statement = $this->connection->getConnection()
+            ->prepare('SELECT COUNT(*) FROM client');
+            return (int) $statement->fetchColumn();
         }
     }

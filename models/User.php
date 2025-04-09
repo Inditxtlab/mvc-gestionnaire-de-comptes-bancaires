@@ -25,7 +25,6 @@ class User
     {
         return $this->password;
     }
-
     public function setId(int $id)
     {
         $this->id = $id;
@@ -40,5 +39,5 @@ class User
     {
         $this->password = $password;
     }
-
+    
 }

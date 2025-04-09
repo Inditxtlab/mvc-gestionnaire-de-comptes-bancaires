@@ -8,18 +8,6 @@ class Client{
     private string $email; 
     private string $telephone; 
     private string $adresse; 
-    private DateTime $createdAt;
-
-    // public function __construct($id, $nom, $prenom, $email, $telephone, $adresse=null){
-    // $this->setId($id); 
-    // $this->setNom($nom); 
-    // $this->setPrenom($prenom); 
-    // $this->setemail($email);
-    // $this->setTelephone($telephone); 
-    // $this->setAdresse($adresse); 
-    // $this->setCreatedAt($createdAt;)
-
-    // }
 
     public function getId(): int{
         return $this->id; 
@@ -41,12 +29,6 @@ class Client{
       return  $this->adresse; 
     }
 
-    
-    public function getCreatedAt():string{
-            return $this->createdAt->format('Y-m-d H:i:s');
-      }
-
-
     public function setId(int $id)
     {
         return $this->id =$id; 
@@ -67,9 +49,5 @@ class Client{
     public function setAdresse(string $adresse)
     {
         return $this->adresse= htmlspecialchars($adresse); 
-    }
-    public function setCreatedAt(DateTime $createdAt): void
-    {
-        $this->createdAt = $createdAt;
     }
 }

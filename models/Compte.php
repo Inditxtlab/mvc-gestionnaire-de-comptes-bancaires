@@ -8,28 +8,7 @@ class Compte
     private string $rib;
     private string $typeDeCompte;
     private string $soldeInitiale;
-    private int $ClientId;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getRib(): string
-    {
-        return $this->rib;
-    }
-
-    public function getTypeDeCompte(): string
-    {
-        return $this->typeDeCompte;
-    }
-
-    public function getSolde(): string
-    {
-        return $this->soldeInitiale;
-    }
-
+    private int $clientId;
 
     public function setId(int $id): void
     {
@@ -51,5 +30,34 @@ class Compte
         $this->soldeInitiale = htmlspecialchars($soldeInitiale);
     }
 
-}
+    public function setClientId($clientId):void
+    {
+        $this->clientId = $clientId;
+    } 
 
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getRib(): string
+    {
+        return $this->rib;
+    }
+
+    public function getTypeDeCompte(): string
+    {
+        return $this->typeDeCompte;
+    }
+
+    public function getSolde(): string
+    {
+        return $this->soldeInitiale;
+    }
+
+    public function getClientId():int
+    {
+        return $this->clientId; 
+    } 
+}
