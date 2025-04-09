@@ -8,7 +8,14 @@ require_once __DIR__ . '/../templates/barrelateral.php';
 <br>
 <h3 class="text-center">Liste de Clients</h3>
 <hr>
-<table class="table table-striped table-bordered mx-auto" style="width: 70%">
+<div class="mx-auto mb-3" style="width: 70%;">
+  <div class="text-end">
+    <a href="?action=create" class="btn btn-secondary">
+      <i class="bi bi-plus"></i> Nouveau Client
+    </a>
+  </div>
+</div>
+<table class="table table-striped table-bordered mx-auto" style="width: 80%">
     <thead class="table-dark">
     <tr>
         <th>ID</th>

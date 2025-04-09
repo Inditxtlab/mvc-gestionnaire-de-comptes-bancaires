@@ -1,8 +1,8 @@
 <?php require_once __DIR__ . '/../templates/header.php';
 require_once __DIR__ . '/../templates/barrelateral.php'; ?>
-<div class="container d-flex justify-content-center">
-    <div class="w-100">
-<h2 class="mb-4">✏️ Modifier un client</h2>
+<div class="container d-flex ms-auto justify-content-center">
+    <div class="w-100" style="max-width: 85%;">
+<h2 class="mb-4">Modifier un client</h2>
 
 <form action="?action=update" method="POST">
     <input type="hidden" name="id" value="<?= $client->getId() ?>">

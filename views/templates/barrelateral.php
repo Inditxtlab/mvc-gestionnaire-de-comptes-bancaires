@@ -12,7 +12,7 @@
   </div>
   <div class="offcanvas-body">
     <ul class="list-unstyled">
-      <li><a href="?" class="nav-link text-white close-menu">Accueil</a></li>
+      <li><a href="?action=dashboard" class="nav-link text-white close-menu">Accueil</a></li>
       <li><a href="?action=list" class="nav-link text-white close-menu">Clients</a></li>
       <li><a href="?action=list_compte" class="nav-link text-white close-menu">Comptes</a></li>
       <li><a href="?action=list" class="nav-link text-white close-menu">Contract</a></li>

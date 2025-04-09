@@ -3,7 +3,7 @@ require_once __DIR__ . '/../templates/barrelateral.php'; ?>
 <br>
 <br>
 <div class="d-flex flex-column align-items-center justify-content-center">
-<h2 class="mb-4">📋 Détail de la compte</h2>
+<h2 class="mb-4">Détail de la compte</h2>
 
 <p><strong>Rib : </strong> <?= $compte->getRib() ?></p>
 <p><strong> Type de Compte: </strong> <?= $compte->getTypeDeCompte() ?></p>

@@ -1,17 +1,17 @@
-<?php 
-if (!isset($comptes)) {
-    echo "<p style='color:red;'>⚠️ \$comptes n'est pas défini</p>";
-} else {
-    echo "<p style='color:green;'>✅ \$comptes est bien défini</p>";
-} 
+<?php
 
 require_once __DIR__ . '/../templates/header.php';
 require_once __DIR__ . '/../templates/barrelateral.php'; ?>
 
-
 <h3 class="mb-4 text-center">Liste des comptes</h3>
 <hr>
-
+<div class="mx-auto mb-3" style="width: 70%;">
+  <div class="text-end">
+    <a href="?action=create_compte" class="btn btn-primary">
+      <i class="bi bi-plus"></i> Nouvelle Compte
+    </a>
+  </div>
+</div>
 <table class="table table-striped table-bordered mx-auto" style="width: 70%">
     <thead class="table-dark">
         <tr>

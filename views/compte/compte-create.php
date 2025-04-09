@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../templates/barrelateral.php'; ?>
 
 <div class="container mt-3">
-<h2 class="mb-4">Créer une nouvelle compte</h2>
+<h2 class="mb-4 text-center">Créer une nouvelle compte</h2>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8" style="width: 65%">
 

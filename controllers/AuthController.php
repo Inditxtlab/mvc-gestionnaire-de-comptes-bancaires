@@ -43,11 +43,11 @@ class AuthController
     {
         $clientRepository = new ClientRepository();
         $compteRepository = new CompteRepository();
-        // $contractRepository = new ContractRepository();
+        $contractRepository = new ContractRepository();
 
         $nbClients = $clientRepository->countAll();
         $nbComptes = $compteRepository->countAll();
-        // $nbContracts = $contractRepository->countAll();
+        $nbContracts = $contractRepository->countAll();
 
         require_once __DIR__ . '/../views/dashboard.php';
 }

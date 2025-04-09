@@ -9,6 +9,9 @@ class Contract
     private string $montantSouscrit;
     private string $duree;
 
+    private int $idClient;
+
+
     public function getId(): int
     {
         return $this->id;
@@ -19,7 +22,7 @@ class Contract
         return $this->typeDeContract;
     }
 
-    public function getMontantSouscrit(): string
+    public function getMontant(): string
     {
         return $this->montantSouscrit;
     }
@@ -27,6 +30,11 @@ class Contract
     public function getDuree(): string
     {
         return $this->duree;
+    }
+
+    public function getidClient(): int 
+    {
+        return $this->idClient; 
     }
 
 
@@ -40,7 +48,7 @@ class Contract
         $this->typeDeContract = htmlspecialchars($typeDeContract);
     }
 
-    public function setMontantSouscrit(string $montantSouscrit): void
+    public function setMontant(string $montantSouscrit): void
     {
         $this->montantSouscrit = htmlspecialchars($montantSouscrit);
     }
@@ -48,6 +56,11 @@ class Contract
     public function setDuree(string $duree): void
     {
         $this->duree = htmlspecialchars($duree);
+    }
+
+    public function setidClient(int $idClient): void
+    {
+        $this->idClient = $idClient; 
     }
 
 }
