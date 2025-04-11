@@ -6,12 +6,13 @@ Creation de dossiers et fichiers du projet
 
 /mvc-banque
 |- /controllers
-|  |-AdminController.php
+|  |-AuthController.php
 |  |-ClientController.php
 |  |-CompteController.php
 |  |-ContractController.php
 |- /lib
 |  |- database.php
+|  |- utils.php
 |- /models
 |  |- /repositories
 |  |  |- ClientRepository.php
@@ -41,8 +42,12 @@ Creation de dossiers et fichiers du projet
 |  |- /templates
 |  |  |- footer.php
 |  |  |- header.php
+|  |  |- barrelateral.php
 |  |- 404.php
+|  |- dashboard.php
 |  |- home.php
-|  |- login.php
+|  |- client.js
+|  |- compte.js
+|  |- contract.js
 |- index.php
 |- README.md
