@@ -8,7 +8,7 @@ require_once __DIR__ . '/../templates/barrelateral.php'; ?>
 <p><strong>Rib : </strong> <?= $compte->getRib() ?></p>
 <p><strong> Type de Compte: </strong> <?= $compte->getTypeDeCompte() ?></p>
 <p><strong>Solde : </strong> <?= $compte->getSolde() ?></p>
-<p><strong>Client ID : </strong> <?= $compte->getClientId() ?></p>
+<p><strong>Client : </strong><?php echo htmlspecialchars($compte->getNom() . ' ' . $compte->getPrenom()); ?></p>
 <div class="d-flex gap-2">
 <a href="?action=edit_compte&id=<?= $compte->getId() ?>" class="btn btn-warning">Modifier la compte</a>
 <a href="?action=list_compte" class="btn btn-secondary">Retour à la liste</a>

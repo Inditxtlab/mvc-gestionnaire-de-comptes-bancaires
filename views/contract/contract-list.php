@@ -6,8 +6,14 @@ require_once __DIR__ . '/../templates/barrelateral.php';
 <br>
 <h3 class="mb-4 text-center">Liste des contracts</h3>
 <hr>
-
-<table class="table table-striped table-bordered mx-auto" style="width: 70%">
+<div class="mx-auto mb-3" style="width: 70%;">
+  <div class="text-end">
+    <a href="?action=create_contract" class="btn btn-secondary">
+      <i class="bi bi-plus text-center"></i> Nouveau Contract
+    </a>
+  </div>
+</div>
+<table class="table table-striped table-bordered mx-auto" style="width: 80%">
     <thead class="table-dark">
         <tr>
             <th>ID</th>

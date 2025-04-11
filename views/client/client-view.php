@@ -11,8 +11,9 @@ require_once __DIR__ . '/../templates/barrelateral.php';  ?>
 <p><strong>E-mail: </strong> <?= $client->getEmail()?></p>
 <p><strong>Téléphone: </strong> <?= $client->getTelephone()?></p>
 <p><strong>Adresse: </strong> <?= $client->getAdresse()?></p>
-<div class="d-flex gap-2">
-<a href="?action=edit&id=<?= $client->getId() ?>" class="btn btn-warning">Modifier</a>
-<a href="?action=list" class="btn btn-secondary">Retour à l'accueil</a>
-</div>
+
+    <div class="d-flex justify-content-center w-100 gap-2">
+        <a href="?action=edit&id=<?= $client->getId() ?>" class="btn btn-warning">Modifier</a>
+        <a href="?action=list" class="btn btn-secondary">Retour à la liste</a>
+    </div>
 </div>

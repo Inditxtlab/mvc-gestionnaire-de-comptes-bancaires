@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/repositories/ClientRepository.php'; 
 require_once __DIR__ . '/../models/Client.php'; 
-
 class ClientController
 {
     private ClientRepository $clientRepository;

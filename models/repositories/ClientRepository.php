@@ -92,7 +92,9 @@ class ClientRepository{
         public function countAll(): int
         {
             $statement = $this->connection->getConnection()
-            ->prepare('SELECT COUNT(nom) FROM client');
-            return (int) $statement->fetchColumn();
+            ->prepare('SELECT COUNT(*) AS NbClients FROM client');
+            $statement->execute();
+           $resultat= $statement->fetch();
+            return $resultat['NbClients']; 
         }
     }

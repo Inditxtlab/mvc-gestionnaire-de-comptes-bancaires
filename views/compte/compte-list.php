@@ -12,13 +12,14 @@ require_once __DIR__ . '/../templates/barrelateral.php'; ?>
     </a>
   </div>
 </div>
-<table class="table table-striped table-bordered mx-auto" style="width: 70%">
+<table class="table table-striped table-bordered mx-auto" style="width: 80%">
     <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>RIB</th>
             <th>Type de Compte</th>
             <th>Solde initiale</th>
+            <th>Client</th>
             <th>Client ID</th>
             <th>Actions</th>
         </tr>
@@ -32,6 +33,7 @@ require_once __DIR__ . '/../templates/barrelateral.php'; ?>
                 <td><?=$compte->getRib(); ?>
                 <td><?= $compte->getTypeDeCompte(); ?></td>
                 <td><?= $compte->getSolde(); ?>€</td>
+                <td><?php echo htmlspecialchars($compte->getNom() . ' ' . $compte->getPrenom()); ?></td>
                 <td><?= $compte->getClientId(); ?></td>
                 <td>
                     <a href="?action=view_compte&id=<?= $compte->getId() ?>" class="btn btn-primary btn-sm">Voir</a>

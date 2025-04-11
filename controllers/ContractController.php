@@ -30,7 +30,7 @@ class ContractController
         $contract->setTypedeContract($_POST['typeDeContract']); 
         $contract->setMontant($_POST['montantSouscrit']); 
         $contract->setDuree($_POST['duree']); 
-        $contract->setidClient($_POST['idClient']);
+        $contract->setidClient((int)$_POST['idClient']);
         $this->contractRepository->create($contract); 
         header('Location: ?action=list_contract'); 
     }
@@ -42,10 +42,11 @@ class ContractController
     public function update()
 {
     $contract = new Contract();
+    $contract->setId($_POST['id']);
     $contract->setTypeDeContract($_POST['typeDeContract']);
     $contract->setMontant($_POST['montantSouscrit']);
     $contract->setDuree($_POST['duree']); 
-    $contract->setidClient($_POST['idClient']);
+    $contract->setidClient((int)$_POST['idClient']);
 
     $this->contractRepository->update($contract);
     header('Location: ?action=list_contract');

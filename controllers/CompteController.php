@@ -30,10 +30,11 @@ class CompteController
         $compte->setRib($_POST['rib']); 
         $compte->setTypeDeCompte($_POST['typeDeCompte']); 
         $compte->setSolde($_POST['solde']); 
-        $compte->setClientId($_POST['clientId']);
+        $compte->setClientId((int)$_POST['clientId']);
         $this->compteRepository->create($compte); 
         header('Location: ?action=list_compte'); 
     }
+
     public function edit(int $id)
     {
         $compte=$this->compteRepository->getCompte($id); 

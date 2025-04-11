@@ -9,6 +9,8 @@ class Compte
     private string $typeDeCompte;
     private string $soldeInitiale;
     private int $clientId;
+    private string $nomClient;
+    private string $prenomClient;
 
     public function setId(int $id): void
     {
@@ -34,7 +36,13 @@ class Compte
     {
         $this->clientId = $clientId;
     } 
-
+    public function setNom(string $nomClient): void {
+        $this->nomClient = $nomClient;
+    }
+    
+    public function setPrenom(string $prenomClient): void {
+        $this->prenomClient = $prenomClient;
+    }
 
     public function getId(): int
     {
@@ -59,5 +67,14 @@ class Compte
     public function getClientId():int
     {
         return $this->clientId; 
-    } 
+    }
+
+    public function getNom(): string {
+        return $this->nomClient;
+    }
+    
+    public function getPrenom(): string {
+        return $this->prenomClient;
+    }
+
 }

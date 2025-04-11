@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <title>Système de gestion de comptes bancaires - MVC</title>
-</head>
+
     <style>
         .navbar-custom {
       background-color: rgb(2, 22, 41);
@@ -53,12 +53,12 @@
 <body class="bg-light">
 
 <nav class="navbar navbar-dark navbar-custom px-3">
-  <a class="navbar-brand text-light" href="?action=dashboard">🏙 La Banque ECF</a>
+  <a class="navbar-brand text-light" href="?action=dashboard"> 🏢La Banque ECF</a>
 
   <div class="ms-auto d-flex align-items-center gap-3">
     <?php if (isset($_SESSION['user_id'])): ?>
       <a href="?action=dashboard" class="btn btn-outline-light">
-        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+        <i class="bi bi-speedometer2 me-2"></i> Tableau de bord
       </a>
 
       <a href="?action=logout" class="btn btn-outline-light d-flex align-items-center">

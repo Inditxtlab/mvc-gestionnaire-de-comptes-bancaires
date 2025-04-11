@@ -2,19 +2,23 @@
 require_once __DIR__ .'/../../views/templates/header.php';
 require_once __DIR__ . '/../Compte.php';
 require_once __DIR__ . '/../../lib/database.php';
+require_once __DIR__ .'/ClientRepository.php'; 
+require_once __DIR__ . '/../Client.php';
 
 class CompteRepository{
     public DatabaseConnection $connection;
+    private ClientRepository $clientRepository;
 
     public function __construct()
     {
         $this->connection= new DatabaseConnection(); 
+        $this->clientRepository = new ClientRepository;
 
     }
     public function getComptes():array{
         $statement=
         $this->connection->getConnection()
-        ->prepare('SELECT * FROM compte'); 
+        ->prepare('SELECT compte.*, client.nom, client.prenom FROM compte JOIN client ON compte.clientId = client.id'); 
         $statement->execute(); 
         $results=$statement->fetchAll(); 
 
@@ -25,6 +29,8 @@ class CompteRepository{
             $compte->setRib($row['rib']); 
             $compte->setTypeDeCompte($row['typeDeCompte']);
             $compte->setSolde($row['soldeInitiale']); 
+            $compte->setNom($row['nom']);
+            $compte->setPrenom($row['prenom']);
             $compte->setClientId($row['clientId']);
 
             $comptes[]=$compte; 
@@ -36,7 +42,10 @@ class CompteRepository{
     {
         $statement=
         $this->connection->getConnection()
-        ->prepare('SELECT * FROM compte WHERE id=:id'); 
+        ->prepare('SELECT compte.*, client.nom AS nomClient, client.prenom AS prenomClient
+            FROM compte
+            JOIN client ON compte.clientId = client.id
+            WHERE compte.id = :id'); 
         $statement->execute(['id'=>$id]); 
         $result=$statement->fetch(); 
 
@@ -49,22 +58,42 @@ class CompteRepository{
         $compte->setRib($result['rib']); 
         $compte->setTypeDeCompte($result['typeDeCompte']); 
         $compte->setSolde($result['soldeInitiale']); 
+        $compte->setNom($result['nomClient']);
+        $compte->setPrenom($result['prenomClient']);
         $compte->setClientId($result['clientId']); 
 
         return $compte; 
+    }
+
+    public function getComptesByClientId(int $id):array
+    {
+        $statement=$this->connection->getConnection()->prepare('SELECT * FROM compte WHERE clientId = :id'); 
+        $statement->execute(['id'=>$id]); 
+        $comptes=[]; 
+        foreach ($statement as $row) {
+            $compte =new Compte(); 
+            $compte->setId($row['id']); 
+            $compte->setRib($row['rib']); 
+            $compte->setTypeDeCompte($row['typeDeCompte']); 
+            $compte->setSolde($row['soldeInitiale']); 
+            $compte->setClientId($row['clientId']); 
+    
+        $comptes[]=$compte; 
+        }
+        return $comptes; 
     }
     
 
     public function create (Compte $compte):bool{
         $statement=$this->connection
         ->getConnection()
-        ->prepare('INSERT INTO compte(rib, typeDeCompte, soldeInitiale, ClientId) VALUES(:rib, :typeDeCompte, :soldeInitiale, :ClientId);');
+        ->prepare('INSERT INTO compte(rib, typeDeCompte, soldeInitiale, clientId) VALUES(:rib, :typeDeCompte, :soldeInitiale, :clientId);');
     
     return $statement ->execute([
         'rib'=>$compte->getRib(),
         'typeDeCompte'=>$compte->getTypeDeCompte(), 
         'soldeInitiale'=>$compte->getSolde(), 
-        'ClientId'=>$compte->getClientId(),
+        'clientId'=>$compte->getClientId(),
     ]); 
 }
 public function list():array
@@ -110,11 +139,13 @@ public function delete(int $id):bool
 
 return $statement ->execute(); 
     }
-
-    public function countAll(): int
-    {
-        $statement= $this->connection->getConnection()->prepare('SELECT COUNT(*) FROM compte');
-        return (int) $statement->fetchColumn();
-    }
+        public function countAll(): int
+        {
+            $statement = $this->connection->getConnection()
+            ->prepare('SELECT COUNT(*) AS NbCompte FROM compte');
+            $statement->execute();
+           $resultat= $statement->fetch();
+            return $resultat['NbCompte']; 
+        }
 }
 

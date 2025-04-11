@@ -57,7 +57,7 @@ class ContractRepository{
     {
         $statement=$this->connection
         ->getConnection()
-        ->prepare('INSERT INTO contract(id, typeDeContract, montantSouscrit, duree, idClient)VALUES(:id, :typeDeContract, :montantSouscrit, :duree, :idClient)'); 
+        ->prepare('INSERT INTO contract( typeDeContract, montantSouscrit, duree, idClient)VALUES(:typeDeContract, :montantSouscrit, :duree, :idClient)'); 
         return $statement->execute([
             'typeDeContract'=>$contract->getTypeDeContract(),
             'montantSouscrit'=>$contract->getMontant(), 
@@ -70,12 +70,13 @@ class ContractRepository{
     {
         $statement=$this->connection
         ->getConnection()
-        ->prepare('UPDATE contract SET typeDeContract= :typeDeContract, montantSouscrit = :montantSouscrit, duree = :duree WHERE id= :id'); 
+        ->prepare('UPDATE contract SET typeDeContract= :typeDeContract, montantSouscrit = :montantSouscrit, duree = :duree, idClient = :idClient  WHERE id= :id'); 
         return $statement->execute([
             'id'=>$contract->getId(),
             'typeDeContract'=>$contract->getTypeDeContract(),
             'montantSouscrit'=>$contract->getMontant(),
             'duree'=>$contract->getDuree(),
+            'idClient'=>$contract->getidClient()
         ]);
     }
 
@@ -89,7 +90,9 @@ class ContractRepository{
         public function countAll(): int
         {
             $statement = $this->connection->getConnection()
-            ->prepare('SELECT COUNT(*) FROM contract');
-            return (int) $statement->fetchColumn();
+            ->prepare('SELECT COUNT(*) AS NbContract FROM contract');
+            $statement->execute();
+           $resultat= $statement->fetch();
+            return $resultat['NbContract']; 
         }
     }

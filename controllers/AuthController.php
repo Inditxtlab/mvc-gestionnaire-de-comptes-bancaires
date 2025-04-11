@@ -19,24 +19,27 @@ class AuthController
     }
 
     public function doLogin()
-    {
-            $email = filter_input(INPUT_POST, 'email');
-            $password = filter_input(INPUT_POST, 'password'); 
+{
+    $email = filter_input(INPUT_POST, 'email');
+    $password = filter_input(INPUT_POST, 'password'); 
 
-            $user = $this->userRepository->getUserByEmail($email); 
-        
-            if($user && password_verify($password, $user->getPassword())){
-                $_SESSION['email'] =$user->getEmail(); 
-                $_SESSION['user_id']= $user->getId(); 
-            }
+    $user = $this->userRepository->getUserByEmail($email); 
 
-            header('Location: ?action=dashboard'); 
-            exit; 
+    if ($user && password_verify($password, $user->getPassword())) {
+        $_SESSION['email'] = $user->getEmail(); 
+        $_SESSION['user_id'] = $user->getId(); 
+        header('Location: ?action=dashboard'); 
+        exit;
+    } else {
+        $_SESSION['login_error'] = 'Email ou mot de passe incorrect';
+        header('Location: ?action=login');
+        exit;
     }
+}
     public function logout()
     {
         session_destroy();
-        header('Location: ?action=home');
+        header('Location: ?action=login');
         exit;
     }
     public function dashboard()
